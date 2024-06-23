@@ -52,3 +52,29 @@
     한 번 < %- body % >의 전후로 HTML 콘텐츠를 추가해보라. 
     모든 페이지에 추가 내용이 반영될 것이다.
 --></html>
+
+<!-- 플래시 메시지를 사용하기 위한 로직 추가-->
+<div class="flashes">
+  <% if (flashMessages) { $> 
+    <% if (flashMessages.success) { %>
+      <div class="flash success"><% = flashMessages.success %></div>
+    <% } else if (flashMessages.error) { %>
+      <div class="flash error"><% = flashMessages.error %></div>
+    <% } %>
+  <% } %>
+</div>
+
+
+<!-- 내비게이션 바에 로그인 상태 추가 -->
+<div class="login">
+  <% if (loggedIn) { %>  <!-- 사용자의 로그인 여부 체크 -->
+    <p>Logged in as
+      <a href="<%=`/users/${currentUser._id}`%>">
+        <%= currentUser.fullName %>
+      </a>
+      <a href="/users/logout">Log out</a>
+    </p>  <!-- 사용자의 fullName과 로그아웃 링크 출력 -->
+  <%} else {%>
+    <a href="/users/login">Log In</a>
+  <% } %>
+</div>

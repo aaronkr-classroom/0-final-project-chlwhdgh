@@ -11,3 +11,38 @@
     </div>
   </div>
 </main>
+
+
+<!-- 4-21 구독자 목록 출력 -->
+<h2 class="center">Subscribers Table</h2>
+<table class="table">  <!-- 인덱스 페이지에 테이블 추가 -->
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Subscribers.forEach(subscriber => { %>  <!-- 구독자 각각에 대한 열 출력 -->
+      <tr>
+        <td>
+          <a href="<%= `/Subscribers/${subscriber._id}` %>">   
+            <%= subscriber.name %>  <!-- 구독자명을 앵커 태그 처리 -->
+          </a>
+        </td>
+        <td><%= subscriber.email %></td>
+        <td>
+          <a href="<%=`subscribers/${subscriber._id}/edit` %>">
+            Edit
+          </a>
+        </td>
+        <td>
+          <a href="<%=`subscribers/${subscriber._id}/delet?_method=DELETE` %>"
+            onclick="return confirm('Are you sure you want to delet this record?')">Delete</a>  <!-- DELETE 링크 추가 -->
+        </td>
+      </tr>
+      <% }); %>
+  </tbody>
+</table>
